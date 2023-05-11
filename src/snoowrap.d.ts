@@ -117,6 +117,8 @@ declare class Snoowrap {
   searchSubredditTopics(options: { query: string; }): Promise<_Subreddit[]>;
   submitLink(options: Snoowrap.SubmitLinkOptions): Promise<_Submission>;
   submitSelfpost(options: Snoowrap.SubmitSelfPostOptions): Promise<_Submission>;
+  submitVideo(options: any): Promise<_Submission>;
+  submitImage(options: any): Promise<_Submission>;
   unauthenticatedRequest(options: RequestOptions): Promise<any>; // options: https://www.npmjs.com/package/request
   updateAccessToken(): Promise<string>;
   updatePreferences(updatedPreferences: any): Promise<void>;
