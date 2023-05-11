@@ -26,6 +26,7 @@ import {
   VoteableContent as _VoteableContent,
   WikiPage as _WikiPage,
 } from './objects';
+import MediaFile from './objects/MediaFile';
 
 export = Snoowrap;
 
@@ -122,6 +123,7 @@ declare class Snoowrap {
   unauthenticatedRequest(options: RequestOptions): Promise<any>; // options: https://www.npmjs.com/package/request
   updateAccessToken(): Promise<string>;
   updatePreferences(updatedPreferences: any): Promise<void>;
+  uploadMedia(options: any): Promise<MediaFile>;
 }
 
 declare namespace Snoowrap {
