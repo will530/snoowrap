@@ -171,10 +171,6 @@ export default class Subreddit<T = any> extends RedditContent<T> {
   unsubscribe(): Promise<this>;
   unwikibanUser(options: { name: string; }): Promise<this>;
   updateStylesheet(options: { css: string; reason?: string; }): Promise<this>;
-  uploadBannerImage(options: ImageUploadOptions): Promise<this>;
-  uploadHeaderImage(options: ImageUploadOptions): Promise<this>;
-  uploadIcon(options: ImageUploadOptions): Promise<this>;
-  uploadStylesheetImage(options: ImageUploadOptions & { name: string; }): Promise<this>;
   wikibanUser(options: { name: string; }): Promise<this>;
 }
 

@@ -1,6 +1,6 @@
 import util from 'util'
 import {defineInspectFunc} from '../helper'
-import {USER_KEYS, SUBREDDIT_KEYS} from '../constants'
+import {SUBREDDIT_KEYS, USER_KEYS} from '../constants'
 import {isBrowser} from '../helpers'
 import type snoowrap from '../snoowrap'
 import type {Children} from '../interfaces'
@@ -22,9 +22,11 @@ class RedditContent<T extends RedditContent = RedditContent<any>> {
   get _uri () {
     return this.__uri
   }
+
   set _uri (uri) {
     this.__uri = uri
   }
+
   /*
   created_utc!: number
   created!: number
@@ -33,7 +35,7 @@ class RedditContent<T extends RedditContent = RedditContent<any>> {
   */
   [key: string]: any
 
-  constructor (options: {[key: string]: any}, _r: snoowrap, _hasFetched = false) {
+  constructor (options: { [key: string]: any }, _r: snoowrap, _hasFetched = false) {
     // _r refers to the snoowrap requester that is used to fetch this content.
     this._r = _r
     this._hasFetched = _hasFetched
@@ -95,14 +97,8 @@ class RedditContent<T extends RedditContent = RedditContent<any>> {
     return this.fetch()
   }
 
-  _clone (deep = false, _children: Children = {}): T {
-    const clonedProps = this._cloneProps(deep, _children)
-    const name = this.constructor._name as keyof typeof snoowrap.objects
-    return this._r._newObject(name, clonedProps, this._hasFetched)
-  }
-
   _cloneProps (deep = false, _children: Children = {}) {
-    const clonedProps: {[key: string]: any} = {}
+    const clonedProps: { [key: string]: any } = {}
     for (const key of Object.keys(this)) {
       let value = this[key]
       if (deep) {
@@ -131,7 +127,7 @@ class RedditContent<T extends RedditContent = RedditContent<any>> {
    * JSON.stringify(user) // => '{"name":"not_an_aardvark"}'
    */
   toJSON () {
-    const object: {[key: string]: any} = {}
+    const object: { [key: string]: any } = {}
     for (const key of Object.keys(this)) {
       if (key.startsWith('_')) continue
       let value = this[key]
@@ -155,18 +151,23 @@ class RedditContent<T extends RedditContent = RedditContent<any>> {
   get _get () {
     return this._r._get
   }
+
   get _post () {
     return this._r._post
   }
+
   get _put () {
     return this._r._put
   }
+
   get _delete () {
     return this._r._delete
   }
+
   get _head () {
     return this._r._head
   }
+
   get _patch () {
     return this._r._patch
   }

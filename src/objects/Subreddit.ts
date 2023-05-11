@@ -1264,59 +1264,7 @@ class Subreddit extends RedditContent<Subreddit> {
     }
     return this
   }
-  /**
-   * @summary Uploads an image for use in this subreddit's stylesheet.
-   * @param {object} options
-   * @param {string} options.name The name that the new image should have in the stylesheet
-   * @param {string|stream.Readable} options.file The image file that should get uploaded. This should either be the path to an
-   * image file, or a [ReadableStream](https://nodejs.org/api/stream.html#stream_class_stream_readable) in environments (e.g.
-   * browsers) where the filesystem is unavailable.
-   * @param {string} [options.imageType='png'] Determines how the uploaded image should be stored. One of `png, jpg`
-   * @returns A Promise that fulfills with this Subreddit when the request is complete.
-   * @example r.getSubreddit('snoowrap').uploadSubredditImage({name: 'the cookie monster', file: './cookie_monster.png'})
-   */
-  uploadStylesheetImage ({name, file, image_type = 'png', imageType = image_type}) {
-    return this._uploadSrImg({name, file, imageType, uploadType: 'img'})
-  }
-  /**
-   * @summary Uploads an image to use as this subreddit's header.
-   * @param {object} options
-   * @param {string|stream.Readable} options.file The image file that should get uploaded. This should either be the path to an
-   * image file, or a [ReadableStream](https://nodejs.org/api/stream.html#stream_class_stream_readable) for environments (e.g.
-   * browsers) where the filesystem is unavailable.
-   * @param {string} [options.imageType='png'] Determines how the uploaded image should be stored. One of `png, jpg`
-   * @returns A Promise that fulfills with this Subreddit when the request is complete.
-   * @example r.getSubreddit('snoowrap').uploadHeaderImage({name: 'the cookie monster', file: './cookie_monster.png'})
-   */
-  uploadHeaderImage ({file, image_type = 'png', imageType = image_type}) {
-    return this._uploadSrImg({file, imageType, uploadType: 'header'})
-  }
-  /**
-   * @summary Uploads an image to use as this subreddit's mobile icon.
-   * @param {object} options
-   * @param {string|stream.Readable} options.file The image file that should get uploaded. This should either be the path to an
-   * image file, or a [ReadableStream](https://nodejs.org/api/stream.html#stream_class_stream_readable) for environments (e.g.
-   * browsers) where the filesystem is unavailable.
-   * @param {string} [options.imageType='png'] Determines how the uploaded image should be stored. One of `png, jpg`
-   * @returns A Promise that fulfills with this Subreddit when the request is complete.
-   * @example r.getSubreddit('snoowrap').uploadIcon({name: 'the cookie monster', file: './cookie_monster.png'})
-   */
-  uploadIcon ({file, image_type = 'png', imageType = image_type}) {
-    return this._uploadSrImg({file, imageType, uploadType: 'icon'})
-  }
-  /**
-   * @summary Uploads an image to use as this subreddit's mobile banner.
-   * @param {object} options
-   * @param {string|stream.Readable} options.file The image file that should get uploaded. This should either be the path to an
-   * image file, or a [ReadableStream](https://nodejs.org/api/stream.html#stream_class_stream_readable) for environments (e.g.
-   * browsers) where the filesystem is unavailable.
-   * @param {string} [options.imageType='png'] Determines how the uploaded image should be stored. One of `png, jpg`
-   * @returns A Promise that fulfills with this Subreddit when the request is complete.
-   * @example r.getSubreddit('snoowrap').uploadBannerImage({name: 'the cookie monster', file: './cookie_monster.png'})
-   */
-  uploadBannerImage ({file, image_type = 'png', imageType = image_type}) {
-    return this._uploadSrImg({file, imageType, upload_type: 'banner'})
-  }
+  
   /**
    * @summary Gets information on this subreddit's rules.
    * @returns A Promise that fulfills with information on this subreddit's rules.

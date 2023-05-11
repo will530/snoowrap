@@ -1,9 +1,8 @@
 import {addEmptyRepliesListing, getEmptyRepliesListing} from '../helper'
-import {emptyChildren as emptyMoreObject} from './More'
 import VoteableContent from './VoteableContent'
 import type snoowrap from '../snoowrap'
 import type {Listing, Submission} from './'
-import type {FetchMoreOptions, FetchAllOptions} from './Listing'
+import type {FetchAllOptions, FetchMoreOptions} from './Listing'
 import type {OmitProps} from '../interfaces'
 import type {COMMENT_SORTS} from '../constants'
 
@@ -41,11 +40,11 @@ class Comment extends VoteableContent<Comment> {
   static _name = 'Comment'
 
   _sort?: typeof COMMENT_SORTS[number]
-  _children: {[id: string]: Comment}
-  _cb?: (child: {_children: {[id: string]: Comment}}) => void
+  _children: { [id: string]: Comment }
+  _cb?: (child: { _children: { [id: string]: Comment } }) => void
 
   constructor (
-    {_children = {}, ...options}: {[key: string]: any},
+    {_children = {}, ...options}: { [key: string]: any },
     _r: snoowrap,
     _hasFetched = false
   ) {
@@ -58,7 +57,7 @@ class Comment extends VoteableContent<Comment> {
          * If a comment has no replies, reddit returns an empty string as its `replies` property rather than an empty Listing.
          * This behavior is unexpected, so replace the empty string with an empty Listing.
          */
-        this.replies = this._r._newObject('Listing', {children: [], _more: emptyMoreObject(), _isCommentList: true})
+        this.replies = getEmptyRepliesListing(this)
       } else if (this.replies.constructor._name === 'Listing' && !this.replies.length && this.replies._more && this.replies._more.name === 't1__') {
         /**
          * If a comment is in a deep comment chain, reddit will send a single `more` object with name `t1__` in place of the
@@ -105,7 +104,7 @@ class Comment extends VoteableContent<Comment> {
    * {@link Listing#fetchMore} for more details.
    * @returns A Promise that fulfills with the replies listing.
    */
-  async fetchMore (options: Partial<OmitProps<FetchMoreOptions, 'append'>>|number) {
+  async fetchMore (options: Partial<OmitProps<FetchMoreOptions, 'append'>> | number) {
     if (typeof options !== 'number') {
       options.append = true
     }

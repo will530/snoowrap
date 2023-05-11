@@ -155,7 +155,7 @@ class LiveThread extends RedditContent {
    * @example r.getLivethread('whrdxo8dg9n0').revokeContributorInvite({name: 'actually_an_aardvark'});
    */
   async revokeContributorInvite ({name}) {
-    const userId = (await this._r.getUser(name).fetch()).id;
+    const userId = (await this._r.getUser(name).fetch())!.id;
     const res = await this._post({url: `api/live/${this.id}/rm_contributor_invite`, form: {api_type, id: `t2_${userId}`}});
     handleJsonErrors(res);
     return this;
@@ -186,7 +186,7 @@ class LiveThread extends RedditContent {
    * @example r.getLivethread('whrdxo8dg9n0').removeContributor({name: 'actually_an_aardvark'})
    */
   async removeContributor ({name}) {
-    const userId = (await this._r.getUser(name).fetch()).id;
+    const userId = (await this._r.getUser(name).fetch())!.id;
     const res = await this._post({url: `api/live/${this.id}/rm_contributor`, form: {api_type, id: `t2_${userId}`}});
     handleJsonErrors(res);
     return this;
