@@ -229,6 +229,7 @@ declare namespace Snoowrap {
     subredditName: string;
     title: string;
     url: string;
+    videoPosterUrl?: string;
     sendReplies?: boolean;
     resubmit?: boolean;
     captchaIden?: string;
